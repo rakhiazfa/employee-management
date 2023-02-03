@@ -11,7 +11,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="#" method="POST" class="needs-validation" novalidate="">
+                        <form action="<?php echo url('actions/login') ?>" method="POST" class="needs-validation" novalidate="">
                             <div class="form-group">
                                 <label>Email</label>
                                 <input type="email" class="form-control" name="email" required autofocus>

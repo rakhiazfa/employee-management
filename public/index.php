@@ -120,11 +120,49 @@ $guardedPages = [
 ];
 
 /**
+ * Daftar halaman yang tidak boleh menggunakan akses login.
+ * 
+ */
+
+$unguardedPages = [
+    '/login',
+];
+
+/**
+ * Daftar aksi-aksi pada aplikasi ini.
+ * 
+ */
+
+$actions = [
+
+    '/actions/login' => function () {
+        require_once __DIR__ . '/../actions/login.php';
+        die();
+    },
+
+];
+
+/**
  * Memuat halaman sesuai request url yang diberikan.
  * 
  */
 
 if ($url !== '/') {
+
+    /**
+     * Cek apakah user mengakses sebuah aksi atau tidak.
+     * 
+     */
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($actions[$url])) {
+
+        /**
+         * Jika iya, maka jalankan aksi tersebut.
+         * 
+         */
+
+        $actions[$url]();
+    }
 
     /**
      * Cek apakah halaman membutuhkan akses login.
@@ -141,6 +179,20 @@ if ($url !== '/') {
         if (!isset($_SESSION['user'])) {
 
             header('Location: ' . env('APP_URL') . '/login');
+            die();
+        }
+    }
+
+    /**
+     * Cek apakah halaman tidak boleh menggunakan akses login.
+     * 
+     */
+
+    if (in_array($url, $unguardedPages)) {
+
+        if (isset($_SESSION['user'])) {
+
+            header('Location: ' . env('APP_URL'));
             die();
         }
     }
