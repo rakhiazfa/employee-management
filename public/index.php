@@ -190,6 +190,11 @@ if ($url !== '/') {
 
     if (in_array($url, $unguardedPages)) {
 
+        /**
+         * Jika tidak boleh menggunakan akses login, maka lempar user ke halaman dashboard.
+         * 
+         */
+
         if (isset($_SESSION['user'])) {
 
             header('Location: ' . env('APP_URL'));
