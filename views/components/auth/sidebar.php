@@ -26,6 +26,13 @@
 
             <li class="menu-header">Menu / Item</li>
 
+            <li>
+                <a class="nav-link" href="<?php echo url('employees') ?>">
+                    <i class="fas fa-users"></i>
+                    <span>Daftar Karyawan</span>
+                </a>
+            </li>
+
         </ul>
 
     </aside>
