@@ -48,6 +48,38 @@ require_once __DIR__ . '/../src/foundation/helpers.php';
 require_once __DIR__ . '/../src/database/connection.php';
 
 /**
+ * Membuat user dengan role admin.
+ * 
+ */
+
+$user = [
+    'name' => 'Admin',
+    'email' => 'admin@example.co.id',
+    'password' => password_hash('admin', PASSWORD_DEFAULT),
+    'role' => 'admin',
+];
+
+/**
+ * Cek apakah user dengan role admin sudah ada atau belum.
+ * 
+ */
+
+$result = $connection->execute_query("SELECT * FROM users WHERE email = ?", [$user['email']]);
+$admin = $result->fetch_assoc();
+
+if (!$admin) {
+
+    /**
+     * Jika belum ada, maka buat user dengan role admin, jika sudah ada, maka lanjutkan ke proses selanjutnya.
+     * 
+     */
+
+    $statement = $connection->execute_query("INSERT INTO users (name, email, password, role) VALUES (
+        ?, ?, ?, ?
+    )", [$user['name'], $user['email'], $user['password'], $user['role']]);
+}
+
+/**
  * Cek mode debug.
  * 
  */
