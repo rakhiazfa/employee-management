@@ -21,6 +21,19 @@ function env(string $key, mixed $default = null)
 
 
 /**
+ * Fungsi untuk mengakses url secara spesifik.
+ * 
+ * @param string $path
+ * 
+ * @return string
+ */
+function url(string $path)
+{
+    return env('APP_URL') . '/' . $path;
+}
+
+
+/**
  * Fungsi untuk mengakses file pada folder assets.
  * 
  * @param string $file
