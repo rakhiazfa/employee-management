@@ -104,6 +104,23 @@ date_default_timezone_set(env('TIMEZONE', 'Asia/Jakarta'));
 session_start();
 
 /**
+ * Menghapus flash message yang sudah terpanggil.
+ * 
+ */
+
+$flashMessages = $_SESSION['FLASH_MESSAGE'] ?? [];
+
+foreach ($flashMessages as $key => $value) {
+
+    if ($value['called']) {
+
+        unset($flashMessages[$key]);
+    }
+}
+
+$_SESSION['FLASH_MESSAGE'] = $flashMessages;
+
+/**
  * Mengambil request url.
  * 
  */

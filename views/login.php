@@ -11,6 +11,12 @@
                     </div>
 
                     <div class="card-body">
+                        <?php if (hasFlash('error')) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo flash('error') ?>
+                            </div>
+                        <?php } ?>
+
                         <form action="<?php echo url('actions/login') ?>" method="POST" class="needs-validation" novalidate="">
                             <div class="form-group">
                                 <label>Email</label>

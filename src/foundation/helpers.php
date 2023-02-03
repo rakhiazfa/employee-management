@@ -102,3 +102,31 @@ function render(string $view)
 
     return 0;
 }
+
+
+/**
+ * Fungsi untuk memeriksa ketersediaan flash message.
+ * 
+ * @param string $key
+ * 
+ * @return mixed
+ */
+function hasFlash(string $key)
+{
+    return $_SESSION['FLASH_MESSAGE'][$key] ?? false;
+}
+
+
+/**
+ * Fungsi untuk menggunakan flash message.
+ * 
+ * @param string $key
+ * 
+ * @return mixed
+ */
+function flash(string $key)
+{
+    $_SESSION['FLASH_MESSAGE'][$key]['called'] = true;
+
+    return $_SESSION['FLASH_MESSAGE'][$key]['value'];
+}
