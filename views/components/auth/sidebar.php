@@ -19,7 +19,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="#">General Dashboard</a>
+                        <a class="nav-link" href="<?php echo url('dashboard') ?>">General Dashboard</a>
                     </li>
                 </ul>
             </li>
