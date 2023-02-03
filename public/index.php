@@ -157,6 +157,11 @@ $actions = [
         die();
     },
 
+    '/actions/logout' => function () {
+        require_once __DIR__ . '/../actions/logout.php';
+        die();
+    },
+
 ];
 
 /**

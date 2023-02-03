@@ -21,9 +21,12 @@
                 </a>
 
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
+
+                <form action="<?php echo url('actions/logout') ?>" method="POST">
+                    <button type="submit" class="dropdown-item has-icon text-danger d-flex align-items-center">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
 
             </div>
         </li>
