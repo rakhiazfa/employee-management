@@ -1,0 +1,17 @@
+{
+    "name": "fauzan-achmad/employee-management",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rakhi Azfa Rifansya",
+            "email": "rakhiazfa0421@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
