@@ -17,6 +17,12 @@ LIMIT 1", [$id]);
 
 $employee = $result->fetch_assoc();
 
+if (!$employee) {
+
+    header('Location: ' . env('APP_URL') . '/404');
+    die();
+}
+
 ?>
 
 <div class="navbar-bg"></div>
