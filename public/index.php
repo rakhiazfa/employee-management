@@ -162,6 +162,11 @@ $actions = [
         die();
     },
 
+    '/actions/employees/store' => function () {
+        require_once __DIR__ . '/../actions/employees/store.php';
+        die();
+    }
+
 ];
 
 /**

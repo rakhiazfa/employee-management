@@ -27,6 +27,12 @@
                     </div>
                     <div class="card-body">
 
+                        <?php if (hasFlash('success')) { ?>
+                            <div class="alert alert-success">
+                                <?php echo flash('success') ?>
+                            </div>
+                        <?php } ?>
+
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>

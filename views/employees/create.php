@@ -36,6 +36,12 @@ while ($row = $result->fetch_assoc()) {
                     </div>
                     <div class="card-body">
 
+                        <?php if (hasFlash('error')) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo flash('error') ?>
+                            </div>
+                        <?php } ?>
+
                         <form action="<?php echo url('actions/employees/store') ?>" class="needs-validation row" novalidate="" method="POST">
 
                             <div class="form-group col-md-6">
