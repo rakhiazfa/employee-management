@@ -81,7 +81,7 @@ $iteration = 1;
                                                         <i class="fas fa-eye"></i>
                                                     </a>
 
-                                                    <a href="#" class="btn btn-light">
+                                                    <a href="<?php echo url('employees/edit?id=' . $employee['id']) ?>" class="btn btn-light">
                                                         <i class="fas fa-pen"></i>
                                                     </a>
 
