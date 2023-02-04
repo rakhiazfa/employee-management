@@ -10,8 +10,8 @@ $password = htmlspecialchars($_POST['password']);
  * 
  */
 
-$query = $connection->execute_query("SELECT * FROM users WHERE email = ? LIMIT 1", [$email]);
-$user = $query->fetch_assoc();
+$result = $connection->execute_query("SELECT * FROM users WHERE email = ? LIMIT 1", [$email]);
+$user = $result->fetch_assoc();
 
 if (!$user) {
 
