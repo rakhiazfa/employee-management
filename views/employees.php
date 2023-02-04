@@ -1,3 +1,27 @@
+<?php
+
+global $connection;
+
+/**
+ * Mengambil semua karyawan.
+ * 
+ */
+
+$employees = [];
+
+$result = $connection->execute_query("SELECT employees.*, users.email FROM employees 
+JOIN users ON employees.user_id = users.id 
+ORDER BY employees.id DESC");
+
+while ($row = $result->fetch_assoc()) {
+
+    array_push($employees, $row);
+}
+
+$iteration = 1;
+
+?>
+
 <div class="navbar-bg"></div>
 
 <!-- Topbar -->
@@ -45,27 +69,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <th>001060704</th>
-                                        <td>Rakhi Azfa Rifansya</td>
-                                        <td>rakhiazfa0421@gmail.com</td>
-                                        <td>
-                                            <div class="d-flex align-items-center" style="gap: 1rem">
-                                                <a href="#" class="btn btn-light">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
+                                    <?php foreach ($employees as $employee) { ?>
+                                        <tr>
+                                            <td><?php echo $iteration++ ?></td>
+                                            <th><?php echo $employee['nip'] ?></th>
+                                            <td><?php echo $employee['name'] ?></td>
+                                            <td><?php echo $employee['email'] ?></td>
+                                            <td>
+                                                <div class="d-flex align-items-center" style="gap: 1rem">
+                                                    <a href="<?php echo url('employees/detail?id=' . $employee['id']) ?>" class="btn btn-light">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
 
-                                                <a href="#" class="btn btn-light">
-                                                    <i class="fas fa-pen"></i>
-                                                </a>
+                                                    <a href="#" class="btn btn-light">
+                                                        <i class="fas fa-pen"></i>
+                                                    </a>
 
-                                                <button type="submit" class="btn btn-light">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                    <button type="submit" class="btn btn-light">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
