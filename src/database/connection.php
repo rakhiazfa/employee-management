@@ -41,7 +41,7 @@ class Connection extends mysqli
      * 
      * @return mysqli_result
      */
-    public function execute_query(string $query, ?array $params = null): mysqli_result|bool
+    public function execute_query(string $query, ?array $params = []): mysqli_result|bool
     {
         $statement = $this->prepare($query);
 
@@ -52,7 +52,7 @@ class Connection extends mysqli
             $types .= $this->getDataType($param);
         }
 
-        $statement->bind_param($types, ...$params);
+        count($params) > 0 && $statement->bind_param($types, ...$params);
 
         $statement->execute();
 
