@@ -33,6 +33,13 @@
                 </a>
             </li>
 
+            <li>
+                <a class="nav-link" href="<?php echo url('presences') ?>">
+                    <i class="fas fa-calendar"></i>
+                    <span>Kehadiran Karyawan</span>
+                </a>
+            </li>
+
         </ul>
 
     </aside>
