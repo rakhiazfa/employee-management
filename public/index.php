@@ -170,8 +170,12 @@ $actions = [
     '/actions/employees/update' => function () {
         require_once __DIR__ . '/../actions/employees/update.php';
         die();
-    }
+    },
 
+    '/actions/employees/delete' => function () {
+        require_once __DIR__ . '/../actions/employees/delete.php';
+        die();
+    }
 ];
 
 /**
