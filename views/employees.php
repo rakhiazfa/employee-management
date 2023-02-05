@@ -84,10 +84,12 @@ $iteration = 1;
                                                     <a href="<?php echo url('employees/edit?id=' . $employee['id']) ?>" class="btn btn-light">
                                                         <i class="fas fa-pen"></i>
                                                     </a>
-
-                                                    <button type="submit" class="btn btn-light">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                    <form action="<?php echo url('actions/employees/delete') ?>" method="post">
+                                                        <input type="hidden" name="user_id" value="<?php echo $employee['user_id'] ?>">
+                                                        <button type="submit" class="btn btn-light">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
