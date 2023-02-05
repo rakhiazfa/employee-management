@@ -86,7 +86,7 @@ $iteration = 1;
                                                     </a>
                                                     <form action="<?php echo url('actions/employees/delete') ?>" method="post">
                                                         <input type="hidden" name="user_id" value="<?php echo $employee['user_id'] ?>">
-                                                        <button type="submit" class="btn btn-light">
+                                                        <button type="submit" class="btn btn-light" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </form>
