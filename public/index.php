@@ -125,7 +125,14 @@ $_SESSION['FLASH_MESSAGE'] = $flashMessages;
  * 
  */
 
-$url = $_SERVER['PATH_INFO'] ?? '/dashboard';
+$url = $_SERVER['REQUEST_URI'] !== '/' ? $_SERVER['REQUEST_URI'] : '/dashboard';
+
+$position = strpos($url, '?') ?? false;
+
+if ($position) {
+
+    $url = substr($url, 0, $position);
+}
 
 /**
  * Daftar halaman yang membutuhkan akses login.
