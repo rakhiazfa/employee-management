@@ -165,6 +165,11 @@ $actions = [
     '/actions/employees/store' => function () {
         require_once __DIR__ . '/../actions/employees/store.php';
         die();
+    },
+
+    '/actions/employees/update' => function () {
+        require_once __DIR__ . '/../actions/employees/update.php';
+        die();
     }
 
 ];

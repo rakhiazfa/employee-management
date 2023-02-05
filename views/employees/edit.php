@@ -14,7 +14,7 @@ while ($row = $result->fetch_assoc()) {
 $id = (int) $_GET['id'];
 
 $result = $connection->execute_query("SELECT 
-employees.*, users.email, 
+employees.*, users.email, users.id AS user_id, 
 locations.*, locations.id AS location_id, 
 identities.*, identities.id AS identity_id, identities.address AS ktp_address 
 FROM employees 
@@ -63,7 +63,12 @@ if (!$employee) {
                             </div>
                         <?php } ?>
 
-                        <form action="<?php echo url('actions/employees/store') ?>" class="needs-validation row" novalidate="" method="POST">
+                        <form action="<?php echo url('actions/employees/update') ?>" class="needs-validation row" novalidate="" method="POST">
+
+                            <input type="hidden" name="employee_id" value="<?php echo $id ?>">
+                            <input type="hidden" name="user_id" value="<?php echo $employee['user_id'] ?>">
+                            <input type="hidden" name="identity_id" value="<?php echo $employee['identity_id'] ?>">
+                            <input type="hidden" name="location_id" value="<?php echo $employee['location_id'] ?>">
 
                             <div class="form-group col-md-6">
                                 <label>NIP</label>
