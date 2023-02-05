@@ -33,6 +33,22 @@
                 </a>
             </li>
 
+            <li>
+                <a class="nav-link" href="<?php echo url('presences') ?>">
+                    <i class="fas fa-calendar"></i>
+                    <span>Kehadiran Karyawan</span>
+                </a>
+            </li>
+
+            <li class="menu-header">Laporan</li>
+
+            <li>
+                <a class="nav-link" href="<?php echo url('reports') ?>">
+                    <i class="fas fa-file-signature"></i>
+                    <span>Laporan Kehadiran</span>
+                </a>
+            </li>
+
         </ul>
 
     </aside>

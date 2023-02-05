@@ -49,26 +49,42 @@ $address = htmlspecialchars($_POST['address'] ?? null);
 
 $email = htmlspecialchars($_POST['email'] ?? null);
 
-
 $query = $connection->execute_query("UPDATE users SET 
         name = '$name', email = '$email' 
         WHERE id = ?", [$userId]);
 
 $query = $connection->execute_query("UPDATE employees SET 
-        nip = '$nip', npwp = '$npwp', name = '$name', phone = '$phone', shift_id = '$shift_id', user_id = '$userId'
+        nip = '$nip', 
+        npwp = '$npwp', 
+        name = '$name', 
+        phone = '$phone', 
+        shift_id = '$shift_id', 
+        user_id = '$userId'
         WHERE id = ?", [$employeeId]);
 
 $query = $connection->execute_query("UPDATE identities SET 
-        nik = '$nik', name = '$name', place_of_birth = '$placeOfBirth', date_of_birth = '$dateOfBirth', gender = '$gender', religion = '$religion', address = '$address', employee_id = '$employeeId'
+        nik = '$nik', 
+        name = '$name', 
+        place_of_birth = '$placeOfBirth', 
+        date_of_birth = '$dateOfBirth', 
+        gender = '$gender', 
+        religion = '$religion', 
+        address = '$address', 
+        employee_id = '$employeeId'
         WHERE id = ?", [$identityId]);
 
 $query = $connection->execute_query("UPDATE locations SET 
-            country = '$country', province = '$province', city = '$city', postal_code = '$postal_code', address = '$address', employee_id = '$employeeId'
+            country = '$country', 
+            province = '$province', 
+            city = '$city', 
+            postal_code = '$postalCode', 
+            address = '$address', 
+            employee_id = '$employeeId'
             WHERE id = ?", [$locationId]);
 
 $_SESSION['FLASH_MESSAGE']['success'] = [
-    'value' => 'Berhasil mengubah data karyawan.',
-    'called' => false,
+        'value' => 'Berhasil mengubah data karyawan.',
+        'called' => false,
 ];
 
 header('Location: ' . env('APP_URL') . '/employees');
