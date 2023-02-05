@@ -1,3 +1,9 @@
+<?php
+
+$user = $_SESSION['user'];
+
+?>
+
 <div class="navbar-bg"></div>
 
 <!-- Topbar -->
@@ -16,7 +22,31 @@
 
             <div class="col-12">
 
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Profile</h4>
+                    </div>
+                    <div class="card-body">
 
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Nama</th>
+                                    <td class="border-top border-light"><?php echo $user['name'] ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td class="border-top border-light"><?php echo $user['email'] ?> </td>
+                                </tr>
+                                <tr>
+                                    <th>Role</th>
+                                    <td class="border-top border-light"><?php echo $user['role'] ?> </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
 
             </div>
         </div>
