@@ -15,6 +15,30 @@ $user = $result->fetch_assoc();
 
 $employeeId = $user['employee_id'];
 
+/**
+ * Mengambil semua absensi.
+ * 
+ */
+
+$presences = [];
+
+$result = $connection->execute_query("SELECT presences.*, employees.name, 
+ shifts.name AS shift_name ,
+ shifts.start AS shift_start,
+ shifts.end AS shift_end
+ FROM presences 
+ JOIN employees ON presences.employee_id = employees.id 
+ JOIN shifts ON employees.shift_id = shifts.id
+ WHERE presences.employee_id = ? 
+ ORDER BY presences.id DESC", [$employeeId]);
+
+while ($row = $result->fetch_assoc()) {
+
+    array_push($presences, $row);
+}
+
+$iteration = 1;
+
 ?>
 
 <div class="navbar-bg"></div>
@@ -112,25 +136,27 @@ $employeeId = $user['employee_id'];
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td rowspan="3">1</td>
-                                        <th rowspan="3">Rakhi Azfa Rifansya</th>
-                                        <td rowspan="3">20 July 2004</td>
-                                        <td rowspan="3">08:00</td>
-                                        <td rowspan="3">0 Minutes</td>
-                                        <td colspan="2" class="text-center">Shift Pagi</td>
-                                        <td rowspan="3">
-                                            <div class="badge badge-success">Present</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Start</th>
-                                        <th>08:00</th>
-                                    </tr>
-                                    <tr>
-                                        <th>End</th>
-                                        <th>10:00</th>
-                                    </tr>
+                                    <?php foreach ($presences as $presence) { ?>
+                                        <tr>
+                                            <td rowspan="3"><?php echo $iteration++ ?></td>
+                                            <th rowspan="3"><?php echo $presence['name'] ?></th>
+                                            <td rowspan="3"><?php echo $presence['date'] ?></td>
+                                            <td rowspan="3"><?php echo $presence['presence_time'] ?></td>
+                                            <td rowspan="3"><?php echo $presence['late_time'] ?></td>
+                                            <td colspan="2" class="text-center"><?php echo $presence['shift_name'] ?></td>
+                                            <td rowspan="3">
+                                                <div class="badge badge-success"><?php echo $presence['status'] ?></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Start</th>
+                                            <th><?php echo $presence['shift_start'] ?></th>
+                                        </tr>
+                                        <tr>
+                                            <th>End</th>
+                                            <th><?php echo $presence['shift_end'] ?></th>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
