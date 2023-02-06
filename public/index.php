@@ -153,6 +153,20 @@ $unguardedPages = [
 ];
 
 /**
+ * Daftar halaman yang hanya boleh diakses oleh admin.
+ * 
+ */
+
+$adminPages = [
+    '/dashboard',
+    '/employees',
+    '/employees/create',
+    '/employees/detail',
+    '/employees/edit',
+    '/presences',
+];
+
+/**
  * Daftar aksi-aksi pada aplikasi ini.
  * 
  */
@@ -241,6 +255,20 @@ if ($url !== '/') {
         if (isset($_SESSION['user'])) {
 
             header('Location: ' . env('APP_URL'));
+            die();
+        }
+    }
+
+    /**
+     * Cek user role.
+     * 
+     */
+
+    if (in_array($url, $adminPages)) {
+
+        if (isset($_SESSION['user']) && $_SESSION['user']['role'] !== 'admin') {
+
+            header('Location: ' . env('APP_URL') . '/403');
             die();
         }
     }
