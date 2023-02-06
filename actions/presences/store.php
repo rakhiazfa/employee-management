@@ -77,6 +77,8 @@ $shiftEnd = DateTime::createFromFormat('H:i:s', $employee['shift_end'] ?? '');
  * 
  */
 
+$shiftStart->setDate((int) date('Y'), (int) date('m'), ((int) date('d')));
+
 if ((int) date('H') <= (int) $shiftStart->format('H') && (int) date('H') <= (int) $shiftEnd->format('H')) {
 
     $shiftStart->setDate((int) date('Y'), (int) date('m'), ((int) date('d') - 1));
