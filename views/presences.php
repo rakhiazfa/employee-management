@@ -66,10 +66,10 @@ $iteration = 1;
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Employee</th>
-                                        <th>Date</th>
-                                        <th>Presence Time</th>
-                                        <th>Late Time</th>
+                                        <th>Karyawan</th>
+                                        <th>Tanggal</th>
+                                        <th>Waktu Absen</th>
+                                        <th>Waktu Terlambat</th>
                                         <th colspan="2">Shift</th>
                                         <th>Status</th>
                                     </tr>
@@ -79,12 +79,28 @@ $iteration = 1;
                                         <tr>
                                             <td rowspan="3"><?php echo $iteration++ ?></td>
                                             <th rowspan="3"><?php echo $presence['employee_name'] ?></th>
-                                            <td rowspan="3"><?php echo $presence['date'] ?></td>
+                                            <td rowspan="3"><?php echo date('d F Y', strtotime($presence['date'])) ?></td>
                                             <td rowspan="3"><?php echo $presence['presence_time'] ?></td>
-                                            <td rowspan="3"><?php echo $presence['late_time'] ?></td>
+                                            <td rowspan="3"><?php echo $presence['late_time'] . ' Menit' ?></td>
                                             <td colspan="2" class="text-center"><?php echo $presence['shift_name'] ?></td>
                                             <td rowspan="3">
-                                                <div class="badge badge-success"><?php echo $presence['status'] ?></div>
+                                                <?php if ($presence['status'] === 'Present') { ?>
+                                                    <div class="badge badge-success">
+                                                        <?php echo $presence['status'] ?>
+                                                    </div>
+                                                <?php } elseif ($presence['status'] === 'Sick') { ?>
+                                                    <div class="badge badge-primary">
+                                                        <?php echo $presence['status'] ?>
+                                                    </div>
+                                                <?php } elseif ($presence['status'] === 'Permission') { ?>
+                                                    <div class="badge badge-warning">
+                                                        <?php echo $presence['status'] ?>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="badge badge-danger">
+                                                        <?php echo $presence['status'] ?>
+                                                    </div>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                         <tr>
