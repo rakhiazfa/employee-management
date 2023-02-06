@@ -58,9 +58,9 @@ $employeeId = $user['employee_id'];
                             <input type="hidden" name="employee_id" value="<?php echo $employeeId ?>">
 
                             <div class="form-group col-12">
-                                <label>Shift</label>
+                                <label>Kondisi Anda</label>
                                 <select class="form-control selectric" name="status" required>
-                                    <option selected disabled>Pilih kondisi kehadiran</option>
+                                    <option selected disabled>Pilih kondisi anda</option>
                                     <option value="Present">Hadir</option>
                                     <option value="Permission">Izin</option>
                                     <option value="Sick">Sakit</option>
