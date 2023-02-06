@@ -30,7 +30,32 @@ $iteration = 1;
                     </div>
                     <div class="card-body">
 
+                        <form action="<?php echo url('actions/presences/store') ?>" class="needs-validation row" novalidate="" method="POST">
 
+                            <div class="form-group col-12">
+                                <label>Shift</label>
+                                <select class="form-control selectric" name="status" required>
+                                    <option selected disabled>Pilih kondisi kehadiran</option>
+                                    <option value="Present">Hadir</option>
+                                    <option value="Permission">Izin</option>
+                                    <option value="Sick">Sakit</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Silahkan isi pilih shift karyawan.
+                                </div>
+                            </div>
+
+                            <div class="form-group col-12">
+                                <label>Keterangan ( Opsional )</label>
+                                <textarea class="form-control" name="description" rows="3"></textarea>
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary btn-lg" tabindex="4">
+                                    Kirim Kehadiran
+                                </button>
+                            </div>
+                        </form>
 
                     </div>
                 </div>
