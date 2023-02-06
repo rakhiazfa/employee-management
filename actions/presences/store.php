@@ -14,11 +14,14 @@ $description = htmlspecialchars($_POST['description'] ?? null);
 
 $result = $connection->execute_query("SELECT 
 employees.*, 
+users.id AS user_id, 
+users.email,
 shifts.id AS shift_id, 
 shifts.name AS shift_name, 
 shifts.start AS shift_start, 
 shifts.end AS shift_end 
 FROM employees 
+JOIN users ON employees.user_id = users.id 
 JOIN shifts ON employees.shift_id = shifts.id 
 WHERE employees.id = ?", [$employeeId]);
 
@@ -85,11 +88,35 @@ if (strtotime($presenceTime) > strtotime($employee['shift_end'])) {
     $lateTime = (int) floor(round(abs(strtotime($presenceTime) - strtotime($employee['shift_end'])) / 60, 2));
 }
 
+/**
+ * Membuat kehadiran.
+ * 
+ */
+
 $query = $connection->execute_query("INSERT INTO presences 
 (date, presence_time, late_time, status, description, employee_id) 
 VALUES (
     ?, ?, ?, ?, ?, ?
 )", [$date, $presenceTime, $lateTime, $status, $description, $employeeId]);
+
+/**
+ * Membuat riwayat kehadiran.
+ * 
+ */
+
+$query = $connection->execute_query("INSERT INTO presence_histories 
+(employee_nip, employee_name, employee_email, shift_name, shift_start, shift_end, presence_id) 
+VALUES (
+    ?, ?, ?, ?, ?, ?, ?
+)", [
+    $employee['nip'],
+    $employee['name'],
+    $employee['email'],
+    $employee['shift_name'],
+    $employee['shift_start'],
+    $employee['shift_end'],
+    $connection->insert_id,
+]);
 
 $_SESSION['FLASH_MESSAGE']['success'] = [
     'value' => 'Berhasil mengirim absensi.',

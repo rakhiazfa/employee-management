@@ -14,8 +14,8 @@ shifts.name AS shift_name ,
 shifts.start AS shift_start,
 shifts.end AS shift_end
 FROM presences 
-JOIN employees ON presences.employee_id = employees.id 
-JOIN shifts ON employees.shift_id = shifts.id
+LEFT JOIN employees ON presences.employee_id = employees.id 
+LEFT JOIN shifts ON employees.shift_id = shifts.id
 ORDER BY presences.id DESC");
 
 while ($row = $result->fetch_assoc()) {
