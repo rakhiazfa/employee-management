@@ -195,6 +195,11 @@ $actions = [
     '/actions/employees/delete' => function () {
         require_once __DIR__ . '/../actions/employees/delete.php';
         die();
+    },
+
+    '/actions/presences/store' => function () {
+        require_once __DIR__ . '/../actions/presences/store.php';
+        die();
     }
 ];
 
