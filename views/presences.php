@@ -45,6 +45,7 @@ $iteration = 1;
                                         <th>Presence Time</th>
                                         <th>Late Time</th>
                                         <th colspan="2">Shift</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,6 +56,9 @@ $iteration = 1;
                                         <td rowspan="3">08:00</td>
                                         <td rowspan="3">0 Minutes</td>
                                         <td colspan="2" class="text-center">Shift Pagi</td>
+                                        <td rowspan="3">
+                                            <div class="badge badge-success">Present</div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Start</th>
