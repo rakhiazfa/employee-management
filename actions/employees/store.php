@@ -52,12 +52,7 @@ $password = password_hash($password, PASSWORD_DEFAULT);
 
 $checkNip = $connection->execute_query("SELECT * FROM employees WHERE nip = ? LIMIT 1", [$nip])->fetch_assoc();
 
-$checkNpwp = null;
-
-if ($npwp) {
-
-    $checkNpwp = $connection->execute_query("SELECT * FROM employees WHERE npwp = ? LIMIT 1", [$npwp])->fetch_assoc();
-}
+$checkNpwp = $connection->execute_query("SELECT * FROM employees WHERE npwp = ? LIMIT 1", [$npwp])->fetch_assoc();
 
 $checkNik = $connection->execute_query("SELECT * FROM identities WHERE nik = ? LIMIT 1", [$nik])->fetch_assoc();
 
@@ -78,9 +73,13 @@ $query = $connection->execute_query("INSERT INTO users (name, email, password, r
     ?, ?, ?, ?
 )", [$name, $email, $password, 'employee']);
 
+$userId = $connection->insert_id;
+
 $query = $connection->execute_query("INSERT INTO employees (
     nip, npwp, name, phone, shift_id, user_id
 ) VALUES (?, ?, ?, ?, ?, ?)", [$nip, $npwp, $name, $phone, $shift_id, $connection->insert_id]);
+
+$employeeId = $connection->insert_id;
 
 $query = $connection->execute_query("INSERT INTO identities (
     nik, name, place_of_birth, date_of_birth, gender, religion, address, employee_id
@@ -90,12 +89,12 @@ $query = $connection->execute_query("INSERT INTO identities (
     $dateOfBirth,
     $gender, $religion,
     $ktpAddress,
-    $connection->insert_id
+    $employeeId,
 ]);
 
 $query = $connection->execute_query("INSERT INTO locations (
     country, province, city, postal_code, address, employee_id
-) VALUES (?, ?, ?, ?, ?, ?)", [$country, $province, $city, $postalCode, $address, $connection->insert_id]);
+) VALUES (?, ?, ?, ?, ?, ?)", [$country, $province, $city, $postalCode, $address, $employeeId]);
 
 $_SESSION['FLASH_MESSAGE']['success'] = [
     'value' => 'Berhasil mendaftarkan karyawan.',
