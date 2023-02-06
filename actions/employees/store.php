@@ -50,7 +50,12 @@ $password = password_hash($password, PASSWORD_DEFAULT);
 
 $checkNip = $connection->execute_query("SELECT * FROM employees WHERE nip = ? LIMIT 1", [$nip])->fetch_assoc();
 
-$checkNpwp = $connection->execute_query("SELECT * FROM employees WHERE npwp = ? LIMIT 1", [$npwp])->fetch_assoc();
+$checkNpwp = null;
+
+if ($npwp !== "") {
+
+    $checkNpwp = $connection->execute_query("SELECT * FROM employees WHERE npwp = ? LIMIT 1", [$npwp])->fetch_assoc();
+}
 
 $checkNik = $connection->execute_query("SELECT * FROM identities WHERE nik = ? LIMIT 1", [$nik])->fetch_assoc();
 
