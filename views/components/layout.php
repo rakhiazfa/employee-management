@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="<?php echo asset('css/components.min.css') ?>">
     <link rel="stylesheet" href="<?php echo asset('css/custom.css') ?>">
 
-    <title>Manajement Kepegawaian</title>
+    <link rel="icon" href="<?php echo asset('img/employee-management.png') ?>">
+
+    <title>Management Employee</title>
 </head>
 
 <body>
