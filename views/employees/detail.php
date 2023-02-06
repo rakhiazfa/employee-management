@@ -7,11 +7,15 @@ $id = (int) $_GET['id'];
 $result = $connection->execute_query("SELECT 
 employees.*, users.email, 
 locations.*, locations.id AS location_id, 
-identities.*, identities.id AS identity_id, identities.address AS ktp_address 
+identities.*, identities.id AS identity_id, identities.address AS ktp_address, 
+shifts.name AS shift_name ,
+shifts.start AS shift_start,
+shifts.end AS shift_end
 FROM employees 
 JOIN users ON employees.user_id = users.id 
 JOIN locations ON locations.employee_id = employees.id 
 JOIN identities ON identities.employee_id = employees.id 
+JOIN shifts ON employees.shift_id = shifts.id 
 WHERE employees.id = ? 
 LIMIT 1", [$id]);
 
@@ -41,7 +45,7 @@ if (!$employee) {
 
         <div class="row">
 
-            <div class="col-md-7">
+            <div class="col-md-7 row-span-2">
                 <div class="card card-success">
                     <div class="card-header">
                         <h4>Detail Karyawan</h4>
@@ -167,7 +171,40 @@ if (!$employee) {
 
                     </div>
                 </div>
+
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h4>Shift Karyawan</h4>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th class="text-center" colspan="2">
+                                        <?php echo $employee['shift_name'] ?? '-' ?>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Start</th>
+                                    <td class="border-top border-light">
+                                        : <?php echo $employee['shift_start'] ?? '-' ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>End</th>
+                                    <td class="border-top border-light">
+                                        : <?php echo $employee['shift_end'] ?? '-' ?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
             </div>
+
+
 
         </div>
 
