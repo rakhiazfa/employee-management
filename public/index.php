@@ -169,6 +169,9 @@ $adminPages = [
     '/employees/detail',
     '/employees/edit',
     '/presences',
+    '/shifts',
+    '/shifts/create',
+    '/shifts/edit',
 ];
 
 /**
