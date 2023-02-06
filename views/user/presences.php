@@ -2,7 +2,18 @@
 
 global $connection;
 
-$iteration = 1;
+$userId = $_SESSION['user']['id'];
+
+$result = $connection->execute_query("SELECT 
+users.*, 
+employees.*, employees.id AS employee_id 
+FROM users 
+JOIN employees ON employees.user_id = users.id 
+WHERE users.id = ? LIMIT 1", [$userId]);
+
+$user = $result->fetch_assoc();
+
+$employeeId = $user['employee_id'];
 
 ?>
 
@@ -30,7 +41,21 @@ $iteration = 1;
                     </div>
                     <div class="card-body">
 
+                        <?php if (hasFlash('error')) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo flash('error') ?>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (hasFlash('success')) { ?>
+                            <div class="alert alert-success">
+                                <?php echo flash('success') ?>
+                            </div>
+                        <?php } ?>
+
                         <form action="<?php echo url('actions/presences/store') ?>" class="needs-validation row" novalidate="" method="POST">
+
+                            <input type="hidden" name="employee_id" value="<?php echo $employeeId ?>">
 
                             <div class="form-group col-12">
                                 <label>Shift</label>
@@ -72,12 +97,6 @@ $iteration = 1;
                         <h4>Riwayat Kehadiran</h4>
                     </div>
                     <div class="card-body">
-
-                        <?php if (hasFlash('success')) { ?>
-                            <div class="alert alert-success">
-                                <?php echo flash('success') ?>
-                            </div>
-                        <?php } ?>
 
                         <div class="table-responsive">
                             <table class="table-sm table-bordered">
