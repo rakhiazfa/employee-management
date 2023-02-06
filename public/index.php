@@ -141,6 +141,12 @@ if ($position) {
 
 $guardedPages = [
     '/dashboard',
+    '/employees',
+    '/employees/create',
+    '/employees/detail',
+    '/employees/edit',
+    '/presences',
+    '/user/presences',
 ];
 
 /**
