@@ -72,7 +72,7 @@ if ($checkPresence) {
  * 
  */
 
-if (strtotime($presenceTime) < strtotime($employee['shift_start'])) {
+if (strtotime($presenceTime) < strtotime($user['shift_start'] ?? '') && strtotime($presenceTime) > strtotime($user['shift_end'] ?? '')) {
 
     $_SESSION['FLASH_MESSAGE']['error'] = [
         'value' => 'Jam ' . $presenceTime . ' tidak masuk ke dalam shift anda.',
