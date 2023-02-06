@@ -37,11 +37,18 @@
                         <span>Kehadiran Karyawan</span>
                     </a>
                 </li>
+            <?php } else { ?>
+                <li>
+                    <a class="nav-link" href="<?php echo url('user/presences') ?>">
+                        <i class="fas fa-calendar"></i>
+                        <span>Kehadiran</span>
+                    </a>
+                </li>
             <?php } ?>
 
-            <li class="menu-header">Laporan</li>
-
             <?php if ($_SESSION['user']['role'] === 'admin') { ?>
+                <li class="menu-header">Laporan</li>
+
                 <li>
                     <a class="nav-link" href="<?php echo url('reports') ?>">
                         <i class="fas fa-file-signature"></i>
