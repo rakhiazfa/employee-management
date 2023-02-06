@@ -57,6 +57,17 @@
                 </li>
             <?php } ?>
 
+            <?php if ($_SESSION['user']['role'] === 'admin') { ?>
+                <li class="menu-header">Setting</li>
+
+                <li>
+                    <a class="nav-link" href="<?php echo url('shifts') ?>">
+                        <i class="fas fa-clock"></i>
+                        <span>Shift</span>
+                    </a>
+                </li>
+            <?php } ?>
+
         </ul>
 
     </aside>
