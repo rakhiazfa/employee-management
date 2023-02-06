@@ -43,8 +43,10 @@ if ($status === "") {
     die();
 }
 
+$now = new DateTime();
+
 $date = date('Y-m-d');
-$presenceTime = date('H:i:s');
+$presenceTime = $now->format('Y-m-d H:i:s');
 $lateTime = 0;
 
 /**
@@ -67,12 +69,26 @@ if ($checkPresence) {
     die();
 }
 
+$shiftStart = DateTime::createFromFormat('H:i:s', $employee['shift_start'] ?? '');
+$shiftEnd = DateTime::createFromFormat('H:i:s', $employee['shift_end'] ?? '');
+
+/**
+ * Cek apakah waktu melewati jam 12 malam.
+ * 
+ */
+
+if ((int) date('H') <= (int) $shiftStart->format('H') && (int) date('H') <= (int) $shiftEnd->format('H')) {
+
+    $shiftStart->setDate((int) date('Y'), (int) date('m'), ((int) date('d') - 1));
+}
+
+
 /**
  * Cek waktu saat karyawan mengirim kehadiran.
  * 
  */
 
-if (strtotime($presenceTime) < strtotime($user['shift_start'] ?? '') && strtotime($presenceTime) > strtotime($user['shift_end'] ?? '')) {
+if (strtotime($presenceTime) < strtotime($shiftStart->format('Y-m-d H:i:s')) && strtotime($presenceTime) > strtotime($shiftEnd->format('Y-m-d H:i:s'))) {
 
     $_SESSION['FLASH_MESSAGE']['error'] = [
         'value' => 'Jam ' . $presenceTime . ' tidak masuk ke dalam shift anda.',
@@ -83,10 +99,12 @@ if (strtotime($presenceTime) < strtotime($user['shift_start'] ?? '') && strtotim
     die();
 }
 
-if (strtotime($presenceTime) > strtotime($employee['shift_start'])) {
+if (strtotime($presenceTime) > strtotime($shiftStart->format('Y-m-d H:i:s'))) {
 
-    $lateTime = (int) floor(round(abs(strtotime($presenceTime) - strtotime($employee['shift_start'])) / 60, 2));
+    $lateTime = (int) floor(round(abs(strtotime($presenceTime) - strtotime($shiftStart->format('Y-m-d H:i:s'))) / 60, 2));
 }
+
+$presenceTime = $now->format('H:i:s');
 
 /**
  * Membuat kehadiran.
