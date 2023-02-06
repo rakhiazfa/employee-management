@@ -20,7 +20,7 @@ WHERE users.id = ?", [$userId]);
 
 $user = $result->fetch_assoc();
 
-$employeeId = $user['employee_id'];
+$employeeId = $user['employee_id'] ?? '';
 
 /**
  * Cek apakah karyawan sudah mengirim kehadiran sebelumnya.
@@ -39,7 +39,7 @@ $checkPresence = $result->fetch_assoc();
 $now = date('H:i:s');
 $checkShift = false;
 
-if (strtotime($now) < strtotime($user['shift_start']) || strtotime($now) > strtotime($user['shift_end'])) {
+if (strtotime($now) < strtotime($user['shift_start'] ?? '') || strtotime($now) > strtotime($user['shift_end'] ?? '')) {
 
     $checkShift = true;
 }
@@ -168,11 +168,11 @@ $iteration = 1;
                                     <?php foreach ($presences as $presence) { ?>
                                         <tr>
                                             <td rowspan="3"><?php echo $iteration++ ?></td>
-                                            <th rowspan="3"><?php echo $presence['name'] ?></th>
-                                            <td rowspan="3"><?php echo date('d F Y', strtotime($presence['date'])) ?></td>
-                                            <td rowspan="3"><?php echo $presence['presence_time'] ?></td>
+                                            <th rowspan="3"><?php echo $presence['name'] ?? '' ?></th>
+                                            <td rowspan="3"><?php echo date('d F Y', strtotime($presence['date'] ?? '')) ?></td>
+                                            <td rowspan="3"><?php echo $presence['presence_time'] ?? '' ?></td>
                                             <td rowspan="3"><?php echo $presence['late_time'] . ' Menit' ?></td>
-                                            <td colspan="2" class="text-center"><?php echo $presence['shift_name'] ?></td>
+                                            <td colspan="2" class="text-center"><?php echo $presence['shift_name'] ?? '' ?></td>
                                             <td rowspan="3">
                                                 <?php if ($presence['status'] === 'Present') { ?>
                                                     <div class="badge badge-success">
@@ -195,11 +195,11 @@ $iteration = 1;
                                         </tr>
                                         <tr>
                                             <th>Start</th>
-                                            <th><?php echo $presence['shift_start'] ?></th>
+                                            <th><?php echo $presence['shift_start'] ?? '' ?></th>
                                         </tr>
                                         <tr>
                                             <th>End</th>
-                                            <th><?php echo $presence['shift_end'] ?></th>
+                                            <th><?php echo $presence['shift_end'] ?? '' ?></th>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
