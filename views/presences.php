@@ -25,7 +25,7 @@ $iteration = 1;
             <div class="col-12">
                 <div class="card card-success">
                     <div class="card-header">
-                        <h4>Daftar Karyawan</h4>
+                        <h4>Kehadiran Karyawan</h4>
                     </div>
                     <div class="card-body">
 
