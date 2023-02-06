@@ -49,6 +49,8 @@ $address = htmlspecialchars($_POST['address'] ?? null);
 
 $email = htmlspecialchars($_POST['email'] ?? null);
 
+$npwp = $npwp !== "" ? $npwp : null;
+
 $query = $connection->execute_query("UPDATE users SET 
         name = '$name', email = '$email' 
         WHERE id = ?", [$userId]);
