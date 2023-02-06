@@ -39,7 +39,7 @@ $checkPresence = $result->fetch_assoc();
 $now = date('H:i:s');
 $checkShift = false;
 
-if (strtotime($now) < strtotime($user['shift_start'])) {
+if (strtotime($now) < strtotime($user['shift_start']) || strtotime($now) > strtotime($user['shift_end'])) {
 
     $checkShift = true;
 }
@@ -88,7 +88,7 @@ $iteration = 1;
 
             <div class="col-12">
 
-                <div class="card card-success <?php echo $checkPresence || !$checkShift ? 'card-disabled' : '' ?>">
+                <div class="card card-success <?php echo $checkPresence || $checkShift ? 'card-disabled' : '' ?>">
                     <div class="card-header">
                         <h4>Formulir Kehadiran</h4>
                     </div>
