@@ -24,14 +24,8 @@ $iteration = 1;
 
             <div class="col-12">
                 <div class="card card-success">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-header">
                         <h4>Daftar Karyawan</h4>
-                        <div>
-                            <a href="<?php echo url('employees/create') ?>" class="btn btn-primary">
-                                <i class="fas fa-plus"></i>
-                                <span>Tambah Karyawan</span>
-                            </a>
-                        </div>
                     </div>
                     <div class="card-body">
 
