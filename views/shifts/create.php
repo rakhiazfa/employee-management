@@ -44,8 +44,8 @@ while ($row = $result->fetch_assoc()) {
 
                         <form action="<?php echo url('actions/shifts/store') ?>" class="needs-validation row" novalidate="" method="POST">
 
-                            <div class="form-group col-md-6">
-                                <label>Nama</label>
+                            <div class="form-group col-md-12">
+                                <label>Nama Shift</label>
                                 <input type="text" class="form-control " name="name" required>
                                 <div class="invalid-feedback">
                                     Silahkan isi Nama Shift.

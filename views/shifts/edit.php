@@ -48,7 +48,7 @@ $shift = $result->fetch_assoc();
                         <form action="<?php echo url('actions/shifts/update?id=' . $shift['id']) ?>" class="needs-validation row" novalidate="" method="POST">
 
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label>Nama Shift</label>
                                 <input type="text" class="form-control" name="name" value="<?php echo $shift['name'] ?>" required>
                                 <div class="invalid-feedback">
