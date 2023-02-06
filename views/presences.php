@@ -2,6 +2,22 @@
 
 global $connection;
 
+/**
+ * Mengambil semua absensi.
+ * 
+ */
+
+$presences = [];
+
+$result = $connection->execute_query("SELECT presences.*, employees.name FROM presences 
+JOIN employees ON presences.employee_id = employees.id 
+ORDER BY presences.id DESC");
+
+while ($row = $result->fetch_assoc()) {
+
+    array_push($presences, $row);
+}
+
 $iteration = 1;
 
 ?>
