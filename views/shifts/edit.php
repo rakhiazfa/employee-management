@@ -79,7 +79,7 @@ $shift = $result->fetch_assoc();
                                             <i class="fas fa-clock"></i>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control timepicker" name="end" value="<?php echo $shift['end'] ?>" required>
+                                    <input type="text" class="form-control timepicker" name="end" value="<?php echo date('H:i:s', strtotime($shift['end'])) ?>" required>
                                     <div class="invalid-feedback">
                                         Silahkan isi Keluar Shift.
                                     </div>
