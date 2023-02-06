@@ -176,19 +176,19 @@ $iteration = 1;
                                             <td rowspan="3">
                                                 <?php if ($presence['status'] === 'Present') { ?>
                                                     <div class="badge badge-success">
-                                                        <?php echo $presence['status'] ?>
+                                                        Hadir
                                                     </div>
                                                 <?php } elseif ($presence['status'] === 'Sick') { ?>
                                                     <div class="badge badge-primary">
-                                                        <?php echo $presence['status'] ?>
+                                                        Sakit
                                                     </div>
                                                 <?php } elseif ($presence['status'] === 'Permission') { ?>
                                                     <div class="badge badge-warning">
-                                                        <?php echo $presence['status'] ?>
+                                                        Izin
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="badge badge-danger">
-                                                        <?php echo $presence['status'] ?>
+                                                        Alpa
                                                     </div>
                                                 <?php } ?>
                                             </td>
