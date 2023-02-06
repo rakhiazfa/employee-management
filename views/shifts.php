@@ -71,15 +71,15 @@ $iteration = 1;
                                         <tr>
                                             <td><?php echo $iteration++ ?></td>
                                             <th><?php echo $shift['name'] ?></th>
-                                            <td><?php echo $shift['start'] ?></td>
-                                            <td><?php echo $shift['end'] ?></td>
+                                            <td><?php echo date('H:i:s', strtotime($shift['start'])) ?></td>
+                                            <td><?php echo date('H:i:s', strtotime($shift['end'])) ?></td>
                                             <td>
                                                 <div class="d-flex align-items-center" style="gap: 1rem">
 
                                                     <a href="<?php echo url('shifts/edit?id=' . $shift['id']) ?>" class="btn btn-light">
                                                         <i class="fas fa-pen"></i>
                                                     </a>
-                                                    <form action="<?php echo url('actions/shifts/delete') ?>" method="post">
+                                                    <form action="<?php echo url('actions/shifts/delete?id=' . $shift['id']) ?>" method="post">
                                                         <input type="hidden" name="user_id" value="<?php echo $shift['user_id'] ?>">
                                                         <button type="submit" class="btn btn-light" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                                             <i class="fas fa-trash"></i>
