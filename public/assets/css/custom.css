@@ -81,6 +81,14 @@
     padding-bottom: 0.95rem !important;
 }
 
+.table-sm {
+    width: 100% !important;
+}
+
+.table-sm th, .table-sm td {
+    padding: 0.75rem 1rem;
+}
+
 /* Image */
 
 .preview-image {
@@ -108,7 +116,7 @@
     object-position: center;
 }
 
-/* Table Header */
+/* Card Header */
 
 .card-header {
     white-space: nowrap !important;
