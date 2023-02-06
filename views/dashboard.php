@@ -37,7 +37,11 @@ $totalReport = mysqli_num_rows($result2);
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-primary">
                         <i class="fas fa-users"></i>
@@ -52,7 +56,8 @@ $totalReport = mysqli_num_rows($result2);
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-danger">
                         <i class="fas fa-calendar"></i>
@@ -67,7 +72,8 @@ $totalReport = mysqli_num_rows($result2);
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-warning">
                         <i class="fas fa-file-signature"></i>
@@ -82,6 +88,8 @@ $totalReport = mysqli_num_rows($result2);
                     </div>
                 </div>
             </div>
+
         </div>
+
     </section>
 </div>
