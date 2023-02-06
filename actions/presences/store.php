@@ -83,9 +83,9 @@ if (strtotime($presenceTime) < strtotime($employee['shift_start'])) {
     die();
 }
 
-if (strtotime($presenceTime) > strtotime($employee['shift_end'])) {
+if (strtotime($presenceTime) > strtotime($employee['shift_start'])) {
 
-    $lateTime = (int) floor(round(abs(strtotime($presenceTime) - strtotime($employee['shift_end'])) / 60, 2));
+    $lateTime = (int) floor(round(abs(strtotime($presenceTime) - strtotime($employee['shift_start'])) / 60, 2));
 }
 
 /**
