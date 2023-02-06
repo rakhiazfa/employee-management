@@ -118,7 +118,7 @@ if (!$employee) {
                                     <th class="text-center" colspan="2">Alamat KTP :</th>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><?php echo $employee['ktp_address'] ?></td>
+                                    <td colspan="2" class="text-center"><?php echo $employee['ktp_address'] ?></td>
                                 </tr>
                             </table>
                         </div>
@@ -164,7 +164,7 @@ if (!$employee) {
                                     <th class="text-center" colspan="2">Alamat Domisili :</th>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><?php echo $employee['address'] ?></td>
+                                    <td colspan="2" class="text-center"><?php echo $employee['address'] ?></td>
                                 </tr>
                             </table>
                         </div>
