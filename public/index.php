@@ -215,6 +215,21 @@ $actions = [
     '/actions/presences/store' => function () {
         require_once __DIR__ . '/../actions/presences/store.php';
         die();
+    },
+
+    '/actions/shifts/store' => function () {
+        require_once __DIR__ . '/../actions/shifts/store.php';
+        die();
+    },
+
+    '/actions/shifts/delete' => function () {
+        require_once __DIR__ . '/../actions/shifts/delete.php';
+        die();
+    },
+
+    '/actions/shifts/update' => function () {
+        require_once __DIR__ . '/../actions/shifts/update.php';
+        die();
     }
 ];
 
