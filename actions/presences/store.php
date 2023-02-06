@@ -44,6 +44,31 @@ $date = date('Y-m-d');
 $presenceTime = date('H:i:s');
 $lateTime = 0;
 
+/**
+ * Cek apakah karyawan sudah mengirim kehadiran sebelumnya.
+ * 
+ */
+
+$result = $connection->execute_query("SELECT * FROM presences WHERE date = ? AND employee_id = ?", [$date, $employeeId]);
+
+$checkPresence = $result->fetch_assoc();
+
+if ($checkPresence) {
+
+    $_SESSION['FLASH_MESSAGE']['error'] = [
+        'value' => 'Anda sudah mengirim absensi.',
+        'called' => false,
+    ];
+
+    header('Location: ' . env('APP_URL') . '/user/presences');
+    die();
+}
+
+/**
+ * Cek waktu saat karyawan mengirim kehadiran.
+ * 
+ */
+
 if (strtotime($presenceTime) < strtotime($employee['shift_start'])) {
 
     $_SESSION['FLASH_MESSAGE']['error'] = [
@@ -67,7 +92,7 @@ VALUES (
 )", [$date, $presenceTime, $lateTime, $status, $description, $employeeId]);
 
 $_SESSION['FLASH_MESSAGE']['success'] = [
-    'value' => 'Berhasil mengirim kehadiran.',
+    'value' => 'Berhasil mengirim absensi.',
     'called' => false,
 ];
 
