@@ -3,7 +3,7 @@ global $connection;
 
 $result = $connection->execute_query("SELECT * FROM employees");
 $result1 = $connection->execute_query("SELECT * FROM presences");
-$result2 = $connection->execute_query("SELECT * FROM shifts");
+$result2 = $connection->execute_query("SELECT * FROM presence_histories");
 
 $totalEmployee = mysqli_num_rows($result);
 $totalPresence = mysqli_num_rows($result1);
