@@ -39,7 +39,7 @@ $checkPresence = $result->fetch_assoc();
 $now = date('H:i:s');
 $checkShift = false;
 
-if (strtotime($now) < strtotime($user['shift_start'] ?? '') && strtotime($now) > strtotime($user['shift_end'] ?? '')) {
+if (strtotime($now) < strtotime($user['shift_start'] ?? '')) {
 
     $checkShift = true;
 }
