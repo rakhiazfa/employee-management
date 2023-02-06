@@ -12,16 +12,11 @@
 
             <li class="menu-header">Dashboard</li>
 
-            <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown">
+            <li class="">
+                <a href="<?php echo url('dashboard') ?>" class="nav-link">
                     <i class="fas fa-fire"></i>
                     <span>Dashboard</span>
                 </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="nav-link" href="<?php echo url('dashboard') ?>">General Dashboard</a>
-                    </li>
-                </ul>
             </li>
 
             <li class="menu-header">Menu / Item</li>
@@ -48,6 +43,7 @@
                     <span>Laporan Kehadiran</span>
                 </a>
             </li>
+
 
         </ul>
 
