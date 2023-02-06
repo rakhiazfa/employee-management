@@ -210,6 +210,27 @@ $actions = [
 ];
 
 /**
+ * Cek apakah user dengan role employee memiliki relasi dengan table employee.
+ * Jika tidak memiliki relasi dengan table employee, maka delete user.
+ * 
+ */
+
+if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'employee') {
+
+    $userId = $_SESSION['user']['id'];
+
+    $result = $connection->execute_query("SELECT * FROM employees WHERE user_id = ?", [$userId]);
+    $employee = $result->fetch_assoc();
+
+    if (!$employee) {
+
+        $query = $connection->execute_query("DELETE FROM users WHERE id = ?", [$userId]);
+
+        unset($_SESSION['user']);
+    }
+}
+
+/**
  * Memuat halaman sesuai request url yang diberikan.
  * 
  */
