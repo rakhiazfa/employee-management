@@ -57,12 +57,12 @@ $query = $connection->execute_query("UPDATE users SET
 
 $query = $connection->execute_query("UPDATE employees SET 
         nip = '$nip', 
-        npwp = '$npwp', 
+        npwp = ?, 
         name = '$name', 
         phone = '$phone', 
         shift_id = '$shift_id', 
         user_id = '$userId'
-        WHERE id = ?", [$employeeId]);
+        WHERE id = ?", [$npwp, $employeeId]);
 
 $query = $connection->execute_query("UPDATE identities SET 
         nik = '$nik', 
