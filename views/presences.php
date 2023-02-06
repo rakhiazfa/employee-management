@@ -9,13 +9,18 @@ global $connection;
 
 $presences = [];
 
-$result = $connection->execute_query("SELECT presences.*, employees.name, 
-shifts.name AS shift_name ,
-shifts.start AS shift_start,
-shifts.end AS shift_end
+$result = $connection->execute_query("SELECT 
+presences.*, 
+employees.name AS employee_name, 
+shifts.name AS shift_name, 
+shifts.start AS shift_start, 
+shifts.end AS shift_end, 
+presence_histories.*, 
+presence_histories.id AS  presence_history_id 
 FROM presences 
 LEFT JOIN employees ON presences.employee_id = employees.id 
-LEFT JOIN shifts ON employees.shift_id = shifts.id
+LEFT JOIN shifts ON employees.shift_id = shifts.id 
+LEFT JOIN presence_histories ON presence_histories.presence_id = presences.id 
 ORDER BY presences.id DESC");
 
 while ($row = $result->fetch_assoc()) {
@@ -73,7 +78,7 @@ $iteration = 1;
                                     <?php foreach ($presences as $presence) { ?>
                                         <tr>
                                             <td rowspan="3"><?php echo $iteration++ ?></td>
-                                            <th rowspan="3"><?php echo $presence['name'] ?></th>
+                                            <th rowspan="3"><?php echo $presence['employee_name'] ?></th>
                                             <td rowspan="3"><?php echo $presence['date'] ?></td>
                                             <td rowspan="3"><?php echo $presence['presence_time'] ?></td>
                                             <td rowspan="3"><?php echo $presence['late_time'] ?></td>
