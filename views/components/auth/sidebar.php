@@ -1,14 +1,16 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="#"><?php echo env('APP_NAME') ?></a>
+            <a href="#">
+                <img class="sidebar-logo" src="<?php echo asset('img/employee-management.png') ?>" alt="Logo">
+            </a>
         </div>
 
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="#"></a>
         </div>
 
-        <ul class="sidebar-menu">
+        <ul class="sidebar-menu" style="margin-top: 1.95rem;">
 
             <li class="menu-header">Dashboard</li>
 

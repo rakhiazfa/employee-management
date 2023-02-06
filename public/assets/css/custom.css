@@ -169,3 +169,10 @@
     border-top: 1px solid #e3eaef;
     width: 100%; 
 }
+
+/* Sidebar */
+
+.main-sidebar .sidebar-logo {
+    height: 325%;
+    margin-top: -2rem;
+}
