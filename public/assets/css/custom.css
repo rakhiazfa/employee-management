@@ -116,6 +116,14 @@
     object-position: center;
 }
 
+/* Card */
+
+.card.card-disabled > * {
+    user-select: none !important;
+    pointer-events: none !important;
+    opacity: 0.5 !important;
+}
+
 /* Card Header */
 
 .card-header {

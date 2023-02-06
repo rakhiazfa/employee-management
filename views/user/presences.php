@@ -5,15 +5,32 @@ global $connection;
 $userId = $_SESSION['user']['id'];
 
 $result = $connection->execute_query("SELECT 
-users.*, 
-employees.*, employees.id AS employee_id 
-FROM users 
-JOIN employees ON employees.user_id = users.id 
-WHERE users.id = ? LIMIT 1", [$userId]);
+employees.*, 
+employees.id AS employee_id, 
+users.id AS user_id, 
+users.email,
+shifts.id AS shift_id, 
+shifts.name AS shift_name, 
+shifts.start AS shift_start, 
+shifts.end AS shift_end 
+FROM employees 
+JOIN users ON employees.user_id = users.id 
+JOIN shifts ON employees.shift_id = shifts.id 
+WHERE users.id = ?", [$userId]);
 
 $user = $result->fetch_assoc();
 
 $employeeId = $user['employee_id'];
+
+/**
+ * Cek apakah karyawan sudah mengirim kehadiran sebelumnya.
+ * 
+ */
+
+$result = $connection->execute_query("SELECT * FROM presences WHERE date = ? AND employee_id = ?", [date('Y-m-d'), $employeeId]);
+
+$checkPresence = $result->fetch_assoc();
+
 
 /**
  * Mengambil semua absensi.
@@ -59,7 +76,7 @@ $iteration = 1;
 
             <div class="col-12">
 
-                <div class="card card-success">
+                <div class="card card-success <?php echo $checkPresence ? 'card-disabled' : '' ?>">
                     <div class="card-header">
                         <h4>Formulir Kehadiran</h4>
                     </div>
