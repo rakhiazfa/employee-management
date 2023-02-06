@@ -158,7 +158,6 @@ $unguardedPages = [
  */
 
 $adminPages = [
-    '/dashboard',
     '/employees',
     '/employees/create',
     '/employees/detail',
