@@ -11,9 +11,9 @@ $start = date('H:i:s', strtotime($start));
 $end = date('H:i:s', strtotime($end));
 
 $query = $connection->execute_query("UPDATE shifts SET 
-name = '$name',
-start = '$start',
-end = '$end' WHERE id = ? LIMIT 1 ", [$id]);
+name = ?,
+start = ?,
+end = ? WHERE id = ? LIMIT 1 ", [$name, $start, $end, $id]);
 
 
 $_SESSION['FLASH_MESSAGE']['success'] = [
