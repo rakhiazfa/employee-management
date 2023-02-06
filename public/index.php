@@ -172,6 +172,15 @@ $adminPages = [
 ];
 
 /**
+ * Daftar halaman yang hanya boleh diakses oleh employee.
+ * 
+ */
+
+$employeePages = [
+    '/user/presences',
+];
+
+/**
  * Daftar aksi-aksi pada aplikasi ini.
  * 
  */
@@ -298,6 +307,15 @@ if ($url !== '/') {
     if (in_array($url, $adminPages)) {
 
         if (isset($_SESSION['user']) && $_SESSION['user']['role'] !== 'admin') {
+
+            header('Location: ' . env('APP_URL') . '/403');
+            die();
+        }
+    }
+
+    if (in_array($url, $employeePages)) {
+
+        if (isset($_SESSION['user']) && $_SESSION['user']['role'] !== 'employee') {
 
             header('Location: ' . env('APP_URL') . '/403');
             die();
