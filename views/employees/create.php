@@ -212,7 +212,7 @@ while ($row = $result->fetch_assoc()) {
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label>konfirmasi Kata Sandi</label>
+                                <label>Konfirmasi Kata Sandi</label>
                                 <input type="password" class="form-control" name="password_confirmation" required>
                                 <div class="invalid-feedback">
                                     Silahkan konfirmasi kata sandi karyawan.
