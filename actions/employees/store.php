@@ -25,6 +25,8 @@ $email = htmlspecialchars($_POST['email'] ?? null);
 $password = htmlspecialchars($_POST['password'] ?? null);
 $passwordConfirmation = htmlspecialchars($_POST['password_confirmation'] ?? null);
 
+$npwp = $npwp !== "" ? $npwp : null;
+
 /**
  * Memeriksa konfirmasi kata sandi.
  * 
@@ -52,7 +54,7 @@ $checkNip = $connection->execute_query("SELECT * FROM employees WHERE nip = ? LI
 
 $checkNpwp = null;
 
-if ($npwp !== "") {
+if ($npwp) {
 
     $checkNpwp = $connection->execute_query("SELECT * FROM employees WHERE npwp = ? LIMIT 1", [$npwp])->fetch_assoc();
 }
