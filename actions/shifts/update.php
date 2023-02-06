@@ -7,6 +7,7 @@ $id = (int) $_GET['id'];
 $name = htmlspecialchars($_POST['name'] ?? null);
 $start = htmlspecialchars($_POST['start'] ?? null);
 $end = htmlspecialchars($_POST['end'] ?? null);
+
 $start = date('H:i:s', strtotime($start));
 $end = date('H:i:s', strtotime($end));
 
