@@ -72,16 +72,20 @@ if ($checkPresence) {
 $shiftStart = DateTime::createFromFormat('H:i:s', $employee['shift_start'] ?? '');
 $shiftEnd = DateTime::createFromFormat('H:i:s', $employee['shift_end'] ?? '');
 
+$year = (int) date('Y');
+$month = (int) date('m');
+$date = (int) date('d');
+
 /**
  * Cek apakah waktu melewati jam 12 malam.
  * 
  */
 
-$shiftStart->setDate((int) date('Y'), (int) date('m'), ((int) date('d')));
+$shiftStart->setDate($year, $month, $date);
 
 if ((int) date('H') < (int) $shiftStart->format('H') && (int) date('H') < (int) $shiftEnd->format('H')) {
 
-    $shiftStart->setDate((int) date('Y'), (int) date('m'), ((int) date('d') - 1));
+    $shiftStart->setDate($year, $month, ($date - 1));
 }
 
 /**

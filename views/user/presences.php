@@ -36,10 +36,24 @@ $checkPresence = $result->fetch_assoc();
  * 
  */
 
-$now = date('H:i:s');
 $checkShift = false;
+$now = date('Y-m-d H:i:s');
 
-if (strtotime($now) < strtotime($user['shift_start'] ?? '')) {
+$shiftStart = DateTime::createFromFormat('H:i:s', $user['shift_start'] ?? '');
+$shiftEnd = DateTime::createFromFormat('H:i:s', $user['shift_end'] ?? '');
+
+$year = (int) date('Y');
+$month = (int) date('m');
+$date = (int) date('d');
+
+$shiftStart->setDate($year, $month, $date);
+
+if ((int) date('H') < (int) $shiftStart->format('H') && (int) date('H') < (int) $shiftEnd->format('H')) {
+
+    $shiftStart->setDate($year, $month, ($date - 1));
+}
+
+if (strtotime($now) < strtotime($shiftStart->format('Y-m-d H:i:s'))) {
 
     $checkShift = true;
 }
