@@ -11,6 +11,14 @@ while ($row = $result->fetch_assoc()) {
     array_push($shifts, $row);
 }
 
+$result1 = $connection->execute_query("SELECT * FROM roles");
+
+$roles = [];
+
+while ($row1 = $result1->fetch_assoc()) {
+
+    array_push($roles, $row1);
+}
 ?>
 
 <div class="navbar-bg"></div>
@@ -73,7 +81,7 @@ while ($row = $result->fetch_assoc()) {
                                 </div>
                             </div>
 
-                            <div class="form-group col-12">
+                            <div class="form-group col-md-6">
                                 <label>Shift</label>
                                 <select class="form-control selectric" name="shift_id" required>
                                     <option selected disabled>Pilih shift karyawan</option>
@@ -87,6 +95,21 @@ while ($row = $result->fetch_assoc()) {
                                 </select>
                                 <div class="invalid-feedback">
                                     Silahkan isi pilih shift karyawan.
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label>role</label>
+                                <select class="form-control selectric" name="role_id" required>
+                                    <option selected disabled>Pilih role karyawan</option>
+                                    <?php foreach ($roles as $role) { ?>
+                                        <option value="<?php echo $role['id'] ?>">
+                                            <?php echo $role['name'] ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Silahkan isi pilih role karyawan.
                                 </div>
                             </div>
 
