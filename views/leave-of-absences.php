@@ -11,9 +11,12 @@ $leaveOfAbsences = [];
 
 $result = $connection->execute_query("SELECT 
 leave_of_absences.*, 
+leave_of_absence_histories.*, leave_of_absence_histories.id AS leave_of_absence_history_id, 
+leave_of_absence_histories.employee_name AS employee_name_history, 
 employees.*, employees.id AS employee_id, employees.name AS employee_name 
 FROM leave_of_absences 
-JOIN employees ON leave_of_absences.employee_id = employees.id 
+LEFT JOIN employees ON leave_of_absences.employee_id = employees.id 
+LEFT JOIN leave_of_absence_histories ON leave_of_absence_histories.leave_of_absence_id = leave_of_absences.id 
 ORDER BY leave_of_absences.id DESC");
 
 while ($row = $result->fetch_assoc()) {
@@ -71,7 +74,7 @@ $iteration = 1;
                                     <?php foreach ($leaveOfAbsences as $leaveOfAbsence) { ?>
                                         <tr>
                                             <td><?php echo $iteration++ ?></td>
-                                            <th><?php echo $leaveOfAbsence['employee_name'] ?></th>
+                                            <th><?php echo $leaveOfAbsence['employee_name'] ?? $leaveOfAbsence['employee_name_history'] ?></th>
                                             <td><?php echo $leaveOfAbsence['start'] ?></td>
                                             <td><?php echo $leaveOfAbsence['end'] ?></td>
                                             <td><?php echo $leaveOfAbsence['category'] ?></td>
