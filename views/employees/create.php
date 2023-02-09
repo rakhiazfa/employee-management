@@ -11,7 +11,7 @@ while ($row = $result->fetch_assoc()) {
     array_push($shifts, $row);
 }
 
-$result1 = $connection->execute_query("SELECT * FROM roles");
+$result1 = $connection->execute_query("SELECT * FROM roles WHERE id != 1");
 
 $roles = [];
 
