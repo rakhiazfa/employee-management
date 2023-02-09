@@ -147,6 +147,7 @@ $guardedPages = [
     '/employees/edit',
     '/presences',
     '/user/presences',
+    '/leave-of-absences',
 ];
 
 /**
@@ -172,6 +173,8 @@ $adminPages = [
     '/shifts',
     '/shifts/create',
     '/shifts/edit',
+    '/shifts/edit',
+    '/leave-of-absences',
 ];
 
 /**
@@ -181,7 +184,7 @@ $adminPages = [
 
 $employeePages = [
     '/user/presences',
-    '/user/paid-leaves',
+    '/user/leave-of-absences',
 ];
 
 /**
@@ -236,20 +239,15 @@ $actions = [
         die();
     },
 
-    '/actions/paid_leaves/store' => function () {
-        require_once __DIR__ . '/../actions/paid_leaves/store.php';
+    '/actions/leave-of-absences/accept' => function () {
+        require_once __DIR__ . '/../actions/leave-of-absences/accept.php';
         die();
     },
 
-    '/actions/paid_leaves/yes' => function () {
-        require_once __DIR__ . '/../actions/paid_leaves/yes.php';
+    '/actions/leave-of-absences/reject' => function () {
+        require_once __DIR__ . '/../actions/leave-of-absences/reject.php';
         die();
     },
-
-    '/actions/paid_leaves/no' => function () {
-        require_once __DIR__ . '/../actions/paid_leaves/no.php';
-        die();
-    }
 ];
 
 /**

@@ -39,7 +39,7 @@
                 </li>
 
                 <li>
-                    <a class="nav-link" href="<?php echo url('paid_leaves') ?>">
+                    <a class="nav-link" href="<?php echo url('leave-of-absences') ?>">
                         <i class="fas fa-calendar-minus"></i>
                         <span>Perizinan Cuti</span>
                     </a>
@@ -54,7 +54,7 @@
 
 
                 <li>
-                    <a class="nav-link" href="<?php echo url('user/paid_leaves') ?>">
+                    <a class="nav-link" href="<?php echo url('user/leave-of-absences') ?>">
                         <i class="fas fa-calendar-minus"></i>
                         <span>Perizinan Cuti</span>
                     </a>
