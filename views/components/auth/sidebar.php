@@ -37,6 +37,13 @@
                         <span>Kehadiran Karyawan</span>
                     </a>
                 </li>
+
+                <li>
+                    <a class="nav-link" href="<?php echo url('paid_leaves') ?>">
+                        <i class="fas fa-calendar-minus"></i>
+                        <span>Perizinan Cuti</span>
+                    </a>
+                </li>
             <?php } else { ?>
                 <li>
                     <a class="nav-link" href="<?php echo url('user/presences') ?>">
@@ -44,7 +51,17 @@
                         <span>Kehadiran</span>
                     </a>
                 </li>
+
+
+                <li>
+                    <a class="nav-link" href="<?php echo url('user/paid_leaves') ?>">
+                        <i class="fas fa-calendar-minus"></i>
+                        <span>Perizinan Cuti</span>
+                    </a>
+                </li>
             <?php } ?>
+
+
 
             <?php if ($_SESSION['user']['role'] === 'admin') { ?>
                 <li class="menu-header">Laporan</li>
