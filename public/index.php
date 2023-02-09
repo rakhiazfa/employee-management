@@ -239,6 +239,11 @@ $actions = [
         die();
     },
 
+    '/actions/leave-of-absences/store' => function () {
+        require_once __DIR__ . '/../actions/leave-of-absences/store.php';
+        die();
+    },
+
     '/actions/leave-of-absences/accept' => function () {
         require_once __DIR__ . '/../actions/leave-of-absences/accept.php';
         die();
