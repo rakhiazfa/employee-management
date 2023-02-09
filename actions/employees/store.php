@@ -7,6 +7,7 @@ $npwp = htmlspecialchars($_POST['npwp'] ?? null);
 $name = htmlspecialchars($_POST['name'] ?? null);
 $phone = htmlspecialchars($_POST['phone'] ?? null);
 $shift_id = htmlspecialchars($_POST['shift_id'] ?? null);
+$role_id = htmlspecialchars($_POST['role_id'] ?? null);
 
 $nik = htmlspecialchars($_POST['nik'] ?? null);
 $placeOfBirth = htmlspecialchars($_POST['place_of_birth'] ?? null);
@@ -71,7 +72,7 @@ if ($checkNip || $checkNpwp || $checkNik || $checkEmail) {
 
 $query = $connection->execute_query("INSERT INTO users (name, email, password, role) VALUES (
     ?, ?, ?, ?
-)", [$name, $email, $password, 'employee']);
+)", [$name, $email, $password, $role_id]);
 
 $userId = $connection->insert_id;
 

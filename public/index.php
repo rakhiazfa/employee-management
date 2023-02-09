@@ -181,6 +181,7 @@ $adminPages = [
 
 $employeePages = [
     '/user/presences',
+    '/user/paid-leaves',
 ];
 
 /**
@@ -232,6 +233,21 @@ $actions = [
 
     '/actions/shifts/update' => function () {
         require_once __DIR__ . '/../actions/shifts/update.php';
+        die();
+    },
+
+    '/actions/paid_leaves/store' => function () {
+        require_once __DIR__ . '/../actions/paid_leaves/store.php';
+        die();
+    },
+
+    '/actions/paid_leaves/yes' => function () {
+        require_once __DIR__ . '/../actions/paid_leaves/yes.php';
+        die();
+    },
+
+    '/actions/paid_leaves/no' => function () {
+        require_once __DIR__ . '/../actions/paid_leaves/no.php';
         die();
     }
 ];
